@@ -1,0 +1,29 @@
+name: torrent-search-haidan
+
+services:
+  frontend:
+    image: ghcr.io/greatbody/torrent-search-haidan-frontend:main
+    ports:
+      - "80:80"
+    depends_on:
+      backend:
+        condition: service_started
+    networks:
+      - app-network
+    restart: unless-stopped
+
+  backend:
+    image: ghcr.io/greatbody/torrent-search-haidan-backend:main
+    ports:
+      - "3000:3000"
+    environment:
+      NODE_ENV: production
+    volumes:
+      - ./backend/.env:/app/.env
+    networks:
+      - app-network
+    restart: unless-stopped
+
+networks:
+  app-network:
+    name: torrent-search-haidan-network 
