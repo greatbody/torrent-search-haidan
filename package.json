@@ -1,0 +1,12 @@
+{
+  "name": "haidan-qbit-interface",
+  "version": "1.0.0",
+  "description": "Interface between haidan.video and qBittorrent",
+  "scripts": {
+    "install-all": "npm install && cd frontend && npm install && cd ../backend && npm install",
+    "dev": "concurrently \"cd backend && npm run dev\" \"cd frontend && npm run dev\""
+  },
+  "devDependencies": {
+    "concurrently": "^8.2.2"
+  }
+}
