@@ -2,6 +2,8 @@ import { useState } from 'react'
 import { SearchResult } from './types'
 import './App.css'
 
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || 'http://localhost:3000'
+
 const CATEGORIES = [
   { label: '动画片/Animation' },
   { label: '动画电影/Animated Movies' },
@@ -34,7 +36,7 @@ function App() {
     setDownloadSuccess({})
     
     try {
-      const response = await fetch('http://localhost:3000/api/search', {
+      const response = await fetch(`${API_BASE_URL}/api/search`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -57,7 +59,7 @@ function App() {
 
   const handleDownload = async (result: SearchResult, category: string) => {
     try {
-      const response = await fetch('http://localhost:3000/api/download', {
+      const response = await fetch(`${API_BASE_URL}/api/download`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
