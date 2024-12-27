@@ -36,7 +36,7 @@ function App() {
     setDownloadSuccess({})
     
     try {
-      const response = await fetch(`${API_BASE_URL}/api/search`, {
+      const response = await fetch(`${API_BASE_URL}/search`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -59,7 +59,7 @@ function App() {
 
   const handleDownload = async (result: SearchResult, category: string) => {
     try {
-      const response = await fetch(`${API_BASE_URL}/api/download`, {
+      const response = await fetch(`${API_BASE_URL}/download`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

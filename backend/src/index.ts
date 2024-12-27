@@ -22,7 +22,7 @@ const qbittorrentService = new QBittorrentService({
   url: process.env.QBITTORRENT_URL || 'http://localhost:8080',
 });
 
-app.post('/api/search', async (req, res) => {
+app.post('/search', async (req, res) => {
   try {
     const { keyword } = req.body;
     if (!keyword) {
@@ -37,7 +37,7 @@ app.post('/api/search', async (req, res) => {
   }
 });
 
-app.post('/api/download', async (req, res) => {
+app.post('/download', async (req, res) => {
   try {
     const { encryptedData, category } = req.body;
     if (!encryptedData) {
