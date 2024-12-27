@@ -26,6 +26,7 @@ function App() {
   const [downloadSuccess, setDownloadSuccess] = useState<{ [key: string]: boolean }>({})
   const [showCategoryModal, setShowCategoryModal] = useState(false)
   const [selectedResult, setSelectedResult] = useState<SearchResult | null>(null)
+  const [downloadLoading, setDownloadLoading] = useState(false)
 
   const handleSearch = async () => {
     if (!keyword.trim()) return
@@ -58,7 +59,10 @@ function App() {
   }
 
   const handleDownload = async (result: SearchResult, category: string) => {
+    setShowCategoryModal(false)
+    setSelectedResult(null)
     try {
+      setDownloadLoading(true)
       const response = await fetch(`${API_BASE_URL}/download`, {
         method: 'POST',
         headers: {
@@ -75,10 +79,10 @@ function App() {
       }
 
       setDownloadSuccess(prev => ({ ...prev, [result.encryptedDownload!]: true }))
-      setShowCategoryModal(false)
-      setSelectedResult(null)
     } catch (error) {
       setError(error instanceof Error ? error.message : 'Failed to add torrent')
+    } finally {
+      setDownloadLoading(false)
     }
   }
 
@@ -107,7 +111,7 @@ function App() {
 
       {error && <div className="error">{error}</div>}
 
-      {loading && (
+      {(loading || downloadLoading) && (
         <div className="loading-container">
           <div className="loading-spinner"></div>
         </div>
