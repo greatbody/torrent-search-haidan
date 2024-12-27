@@ -26,13 +26,24 @@ body {
   margin: 0;
   display: flex;
   place-items: center;
-  min-width: 320px;
+  min-width: auto;
   min-height: 100vh;
+  padding: env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left);
 }
 
 h1 {
-  font-size: 3.2em;
+  font-size: 2.5em;
   line-height: 1.1;
+}
+
+@media (max-width: 768px) {
+  body {
+    padding: 0.5rem;
+  }
+  
+  h1 {
+    font-size: 1.8em;
+  }
 }
 
 button {
