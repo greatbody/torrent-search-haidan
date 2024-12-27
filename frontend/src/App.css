@@ -26,9 +26,19 @@
   flex: 1;
 }
 
+.container:empty {
+  justify-content: flex-start;
+}
+
 h1 {
   color: #333;
   margin-bottom: 1rem;
+  margin-top: 33vh;
+  transition: margin-top 0.3s ease;
+}
+
+.container:has(.results:not(:empty)) h1 {
+  margin-top: 3vh;
 }
 
 .search-box {
