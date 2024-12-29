@@ -154,13 +154,24 @@ function App() {
                         ))}
                       </div>
                     </div>
-                    <button
-                      onClick={() => openCategoryModal(result)}
-                      className={downloadSuccess[result.encryptedDownload!] ? 'success' : ''}
-                      disabled={!!downloadSuccess[result.encryptedDownload!]}
-                    >
-                      {downloadSuccess[result.encryptedDownload!] ? '已添加' : '下载'}
-                    </button>
+                    {result.progress > 0 ? (
+                      <div className="progress-bar">
+                        <div 
+                          className="progress-bar-fill"
+                          style={{ width: `${result.progress}%` }}
+                        >
+                          {Math.round(result.progress)}%
+                        </div>
+                      </div>
+                    ) : (
+                      <button
+                        onClick={() => openCategoryModal(result)}
+                        className={downloadSuccess[result.encryptedDownload!] ? 'success' : ''}
+                        disabled={!!downloadSuccess[result.encryptedDownload!]}
+                      >
+                        {downloadSuccess[result.encryptedDownload!] ? '已添加' : '下载'}
+                      </button>
+                    )}
                   </div>
                 ))}
               </div>

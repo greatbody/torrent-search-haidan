@@ -10,6 +10,7 @@ export interface SearchResult {
   tags: string[];
   discount?: string;
   feePercentage?: string;
+  progress: number;
 }
 
 export interface DownloadInfo {

@@ -47,7 +47,9 @@ export class HaidanService {
         // Process each torrent item in the group
         group.find('.torrent_item').each((_, itemElement) => {
           const item = $(itemElement);
-
+          const poster = item.siblings('.poster');
+          const progressValue = poster.find('progress').attr('data-label');
+          const progress = progressValue?.replace('%', '') || '0';
           const torrentName = item.find('.torrent_name_col a').first().text().trim();
           const title = `${videoName} ${torrentName}`;
           const downloadLink = item.find('.operation_col .copy-download-link').attr('data-clipboard-text') || '';
@@ -116,7 +118,8 @@ export class HaidanService {
               groupId,
               tags,
               discount,
-              feePercentage
+              feePercentage,
+              progress,
             };
             results.push(result);
             groups[groupId].items.push(result);
