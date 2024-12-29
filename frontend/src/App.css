@@ -496,7 +496,8 @@ button:disabled {
 .progress-bar {
   width: 100px;
   height: 32px;
-  background-color: #f0f0f0;
+  padding: 1px;
+  background-color: #4CAF50;
   border-radius: 4px;
   overflow: hidden;
   position: relative;
@@ -509,6 +510,9 @@ button:disabled {
   display: flex;
   align-items: center;
   justify-content: center;
+  padding: 1px;
   color: white;
   font-size: 0.9em;
+  border: 2px solid rgba(255, 255, 255, 0.8);
+  box-sizing: border-box;
 }
