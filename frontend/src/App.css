@@ -144,8 +144,7 @@ button:disabled {
 
 .torrent-item {
   display: flex;
-  justify-content: space-between;
-  align-items: center;
+  flex-direction: column;
   padding: 10px;
   border-radius: 4px;
   background: #f8f9fa;
@@ -153,6 +152,14 @@ button:disabled {
   width: 100%;
   box-sizing: border-box;
   margin: 0;
+  gap: 10px;
+}
+
+.item-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
 }
 
 .torrent-item:hover {
@@ -269,6 +276,7 @@ button:disabled {
   height: 32px;
   padding: 0;
   font-size: 0.9em;
+  flex-shrink: 0;
 }
 
 .modal-overlay {
@@ -412,15 +420,14 @@ button:disabled {
     width: 100%;
   }
 
-  .torrent-item {
+  .item-row {
     flex-direction: column;
     gap: 12px;
-    padding: 12px;
+    align-items: stretch;
   }
 
   .item-details {
     margin-right: 0;
-    width: 100%;
   }
 
   .item-stats {
@@ -458,22 +465,6 @@ button:disabled {
   }
 
   .result-group {
-    padding: 0.75rem;
-    margin: 0;
-    width: 100%;
-    box-sizing: border-box;
-  }
-
-  .group-header h2 {
-    font-size: 1.3em;
-  }
-
-  .torrent-name {
-    font-size: 0.95em;
-    line-height: 1.4;
-  }
-
-  .results {
     padding: 0;
     margin: 0;
     width: 100%;

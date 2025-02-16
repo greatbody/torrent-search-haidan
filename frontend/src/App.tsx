@@ -136,25 +136,36 @@ function App() {
               <div className="group-items">
                 {group.items.map(result => (
                   <div key={result.encryptedDownload} className="torrent-item">
-                    <div className="item-details">
-                      <p className="torrent-name">{result.torrentName}</p>
-                      <div className="item-stats">
-                        <span className="size">{result.size}</span>
-                        <span className={`seeders ${result.seeders > 10 ? 'good-seeders' : ''}`}>
-                          做种: {result.seeders}
-                        </span>
-                        {result.feePercentage && (
-                          <span className="fee-tag">
-                            {result.feePercentage === '0%' ? '免费' : `${result.feePercentage} 倍率`}
+                    <div className="item-row">
+                      <div className="item-details">
+                        <p className="torrent-name">{result.torrentName}</p>
+                        <div className="item-stats">
+                          <span className="size">{result.size}</span>
+                          <span className={`seeders ${result.seeders > 10 ? 'good-seeders' : ''}`}>
+                            做种: {result.seeders}
                           </span>
-                        )}
-                        {result.discount && <span className="discount-tag">{result.discount}</span>}
-                        {result.tags.map((tag: string, index: number) => (
-                          <span key={index} className={`tag ${tag.toLowerCase()}`}>{tag}</span>
-                        ))}
+                          {result.feePercentage && (
+                            <span className="fee-tag">
+                              {result.feePercentage === '0%' ? '免费' : `${result.feePercentage} 倍率`}
+                            </span>
+                          )}
+                          {result.discount && <span className="discount-tag">{result.discount}</span>}
+                          {result.tags.map((tag: string, index: number) => (
+                            <span key={index} className={`tag ${tag.toLowerCase()}`}>{tag}</span>
+                          ))}
+                        </div>
                       </div>
+                      {result.progress > 0 ? null : (
+                        <button
+                          onClick={() => openCategoryModal(result)}
+                          className={downloadSuccess[result.encryptedDownload!] ? 'success' : ''}
+                          disabled={!!downloadSuccess[result.encryptedDownload!]}
+                        >
+                          {downloadSuccess[result.encryptedDownload!] ? '已添加' : '下载'}
+                        </button>
+                      )}
                     </div>
-                    {result.progress > 0 ? (
+                    {result.progress > 0 && (
                       <div className="progress-bar">
                         <div 
                           className="progress-bar-fill"
@@ -163,14 +174,6 @@ function App() {
                           {Math.round(result.progress)}%
                         </div>
                       </div>
-                    ) : (
-                      <button
-                        onClick={() => openCategoryModal(result)}
-                        className={downloadSuccess[result.encryptedDownload!] ? 'success' : ''}
-                        disabled={!!downloadSuccess[result.encryptedDownload!]}
-                      >
-                        {downloadSuccess[result.encryptedDownload!] ? '已添加' : '下载'}
-                      </button>
                     )}
                   </div>
                 ))}
